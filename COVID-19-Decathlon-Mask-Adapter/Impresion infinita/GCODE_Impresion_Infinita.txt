@@ -1,0 +1,22 @@
+G90
+M82
+M106 S0
+M140 S40
+M190 S40
+M104 S210 T0
+M109 S210 T0
+G28 ; home all axes
+G1 X3 Y3 Z0.5; Go to x3 y3 and z0.5 to compensate for glass bed
+G92 E0; Reset extruder
+G1 Y60.0 E9.0 F1000.0; Go to Y60 extruding some plastic
+G1 Y100.0 E12.5 F1000.0; Go t oY100 extruding some plastic
+G92 E0; Reset extruder
+G0 X105 Z10;
+
+G1 E-1 F300; retract the filament a bit
+G28 X0; home
+M190 S35; Wait for bed to reach 35deg
+G0 Y170 Z1; go to Y170 at a height of 1
+G0 X105; go to the center of X
+G0 Y0; go to Y0 and pop the piece in all the way
+G0 Y170; go back so the bed reaches as far as possible from extruder so piece comes off

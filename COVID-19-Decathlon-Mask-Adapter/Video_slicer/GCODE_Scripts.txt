@@ -1,0 +1,69 @@
+NOTA IMPORTANTE:
+
+Todos los parámetros en este gcode son orientativos. Lo óptimo sería que sustituyeras los valores de todas las
+temperaturas a los que uses en tu perfil de impresión. Si vas a copiar y pegar tal cual, tendrás que definir la temperatura
+del extrusor en el slicer a 210 grados y la de la cama caliente a 55 grados.
+
+Los comandos donde se define alguna temperatura son:
+
+M140
+M190
+M104
+M109
+
+Al lado de cada uno viene explicado lo que hace, solamente deberás cambiar el valor que tiene por el que prefieras usar.
+A este valor le precede una "S" o una "R". Ejemplo:
+
+Tu perfil usa una temperatura de extrusor de 195 grados y cama caliente a 60 grados, deberás cambiar todos los valores de los comandos M140 y M190 
+que vayan precedidos por una "S" o "R" por 60 grados o en su defecto la temperatura de enfriamiento para quitar la pieza. Y la de los comandos M104 y M109
+por 195. En cualquier caso lee el comentario de cada comando para ver lo que hace.
+
+Scripts:
+-----------------------------------------------------------------------
+
+Gcode inicio loop:
+
+G28 ; Home de todos ejes
+G1 X3 Y3 Z0.5; Mover a x=3mm, y=3mm y z=0.5mm
+G92 E0; Resetear extrusor
+G1 Y60.0 E9.0 F1000.0; Mover hasta y=60mm extruyendo plastico
+G1 Y100.0 E12.5 F1000.0; Continuar hasta y=100mm extruyendo algo más de plástico que antes
+G92 E0; Resetear extrusor
+
+
+Gcode fin loop:
+
+G1 E-1 F300; Retraer un poco de filamento
+G0 Y10; Mover el extrusor a la altura a la que está, hasta y=10mm
+M190 R40; Esperar a que la temp de la cama baje hasta 40 grados para que sea más fácil quitar la pieza
+G0 Y195; Mover a y=195mm 
+G0 Z1; Mover hasta z=1mm (se separa del comando anterior para no interpolar)
+G0 X105; Mover al centro aprox de la cama en x (ídem para evitar interpolación)
+G0 Y0; Moverse hasta y=0mm, empujando con el bloque de extrusión la pieza
+G0 Y195; Moverse de vuelta hasta y=195mm para que la pieza caiga del soporte a la mesa
+M140 S55; Configurar cama caliente a 55 grados
+M190 S55; Esperar a que la cama alcance 55 grados
+
+
+Gcode inicio básico:
+
+G90; Configurar posicionamiento absoluto
+M82; Configurar extrusor a modo abosoluto
+M106 S0; Encender ventilador a velocidad 0
+M140 S55; Configurar cama caliente a 55 grados
+M190 S55; Esperar a que la cama alcance 55 grados
+M104 S210 T0; Configurar extrusor a 210 grados
+M109 S210 T0; Esperar a que el extrusor llegue a 210 grados
+
+
+Gcode fin básico:
+
+M104 S0; Configurar extrusor a 0 grados
+M140 S0; Configurar cama a 0 grados
+G1 E-1 F300; Retraer un poco de filamento
+G28 X0; Home de todos los ejes
+G1 Y170; Mover la cama a y=170mm
+M84; Desabilitar motores
+M107; Apagar ventilador
+
+-------------------------------------------------------------------------

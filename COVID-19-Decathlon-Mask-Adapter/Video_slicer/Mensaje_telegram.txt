@@ -1,0 +1,42 @@
+Buenos días makers,
+
+El siguiente vídeo detalla los pasos a seguir para poder automatizar el proceso de impresión en cualquier impresora FDM convencional. Esto significa que se podría poner a imprimir un tipo de pieza y que vaya saliendo en cadena,
+siendo el único factor limitante la cantidad de filamento en la bobina.
+
+El proceso no es perfecto, y NO SE RECOMIENDA hacelo SIN ciertos CONOCIMIENTOS MEDIOS de impresión 3D. Siendo muy recomendable manejarse algo leyendo y escribiendo GCODE.
+Aún así se ha intentando condensar toda la información y explicarla lo mejor posible para que cualquiera pueda hacerlo.
+
+El proceso esta pensado para quien tenga una granja de impresoras (empresas o universidades) y no pueda estar pendientes de ella todo el día. Siendo extrapolable a cualquier impresora de todas formas.
+
+En la descripción del video de Youtube hay enlaces a más documentación (también link al final de este mensaje), por favor antes de intentar hacerlo leela al completo.
+
+Sé que el video deja mucho que desear en cuanto a montaje y claridad, pedimos disculpas por ello y toda crítica es más que bienvenida. 
+Estamos a disposición de cualquier persona que quiera probarlo o que quiera contribuir a la documentación, ya sea por telegram o por correo (automatica3Dcovid@gmail.com)
+
+Se REQUIEREN unas ESPECIFICACIONES concretas de la IMPRESORA que vienen DETALLADAS en la DOCUMENTACIÓN, pero el proceso no es útil para cualquier diseño.
+
+Todo el proyecto estará en proceso constante de revisión, y sujeto a los cambios que ello conlleve.
+
+
+Nota: el vídeo va muy rápido, está pensado así para ocupar el menor espacio posible y hacer más fácil su distribución y tiempo de edición. Seguramente sea necesario pararlo para seguir la explicación,
+siendo recomendable bajarle la velocidad de reproducción.
+
+Enlace al video de Youtube:
+
+https://youtu.be/CaF-Yk3SC3I
+
+Enlace a la documentación en Drive:
+
+https://youtu.be/avlengYsJdw
+
+
+La IDEA original es del canal "Make Everything", enlace al video:
+
+https://youtu.be/avlengYsJdw
+
+
+
+
+NOTA: actualmente el tutorial se ha realizado usando simplified3D. Se está trabajando en la adaptación a CURA y Slic3r. Así como en su traducción a otros idiomas.
+
+

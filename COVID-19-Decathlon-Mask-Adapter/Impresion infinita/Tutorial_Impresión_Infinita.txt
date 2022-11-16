@@ -1,0 +1,69 @@
+Hola a todos,
+
+Con intención de agilizar un poco el proceso de producción con impresoras 3D (FDM solo), he preparado unas pocas lineas de gcode que podrán ayudar bastante.
+Consiste en un script de inicio y uno final, que en teoría permitirían imprimir tantas piezas seguidas como filamento en la bobina haya, sin intervención entre pieza y pieza. Video demostrativo:
+
+Ante todo esto es un proceso COMPLETAMENTE EXPERIMENTAL y sujeto supervisión constante. Por favor no intentes reporducirlo sin leer antes toda la guía que pongo y ver si tu sistema podría hacerlo, aún así es completamente bajo tu responsabilidad y es muy recomendable tener alguna nocio básica de gcode.
+
+El único requisito imprescindible es que la cama caliente (base de impresión) permita una extracción fácil de la pieza, sin tener que separarla de la impresora y pudiendo retirar la pieza a mano y sin esfuerzo.
+No valen en principio camas texturizadas, buildtacks o uso de lacas. Lo óptimo es una cama de cristal o similar. Podéis probar con cualquier cama, pero con el riesgo que conlleva. Nota para las camas de cristal: es muy útil limparlas con fairy y aclarar con abundante agua, para posteriormente secarlas con papel de cocina. Esto hace que la pieza adhiera muy bien y que en cuanto la cama se enfría salga muy bien también. IMPORTANTISIMO, NO VOLVER A TOCAR el cristal con la mano, de lo contratio la grasa hace que se pierdan los beneficios que he contado antes.
+
+El único preparativo de hardware que hay que hacer es algo tan simple como poner un folio o preferiblemente una lamina de acetato o vinilo sujeto a la cama,como se muestra en la siguiente foto:
+
+A continuación viene el proceso para preparar el gcode (pongo aquí las lineas de gcode, pero también adjunto un archivo .txt con todos los scripts bien diferenciados y comentada cada linea exlicando la utlidad):
+
+1- Abrir en cualquier slicer la pieza a imprimir (SOLO UNA) y situarla en centro de la cama. 
+
+2- En caso de que la pieza tenga una superficie plana vertical "grande", rotar la pieza hasta que esta cara dé hacia la parte trasera de la impresora. A continuación ejemplo con la Charlotte Valenciana:
+
+3- Definir los parámetros que ya hayamos comprobado que imprimen bien dicha pieza. Cada uno tendrá unos diferentes para cada impresora.
+
+4- Ir al apartado de scripts del slicer e introducir el siguiente gcode en el script de inicio, borrando previamente todo lo que haya (OJO, solo hay que borrar lo que haya en caso de que no sean los comandos básicos para preparar la impresión, en el paso 9 detallo cuales son estos comandos):
+
+	G28;
+	G1 X3 Y3 Z0.5;
+	G92 E0;
+	G1 Y60.0 E9.0 F1000.0;
+	G1 Y100.0 E12.5 F1000.0;
+	G92 E0;
+
+5- Ir al apartado de script final e introducir:
+
+	G1 E-1 F300;
+	G0 X0;
+	M190 R35;
+	G0 Y170 Z1;
+	G0 X105;
+	G0 Y0;
+	G0 Y170;
+
+6-Exportar el gcode como de costumbre para imprimir.
+
+7- Ir a la ubicación del gcode y abrirlo con un editor de texto (Importante tiene que ser en texto plano).
+
+8- Seleccionar todo el texto y copiarlo en otra ventana del editor.
+
+9- En la ventana con el archivo original bajaremos hasta encontrarnos con la primera linea que no tenga un punto y coma al principio (foto de ejemplo). Es muy importante que aqui nos aseguremos de que hay unos comando básicos antes que nuestro script de inicio. Que son similares a los siguientes:
+
+	G90
+	M82
+	M106 SX (La X será un número)
+	M140 SX (La X será un número)
+	M190 SX (La X será un número)
+	M104 SX T0 (La X será un número)
+	M109 SX T0 (La X será un número)
+	(A partir de aqui empieza nuestro script)
+	G28;
+	G1 X3 Y3 Z0.5;
+	G92 E0;
+	etc
+
+Los comandos pueden variar dependiendo de la configuración de cada slicer, en el .txt adjunto añado particularidades para Cura, slic3r y simplified3D.
+
+
+
+	
+
+
+
+La idea original no es mía, es de un video del 8 de agosto de 2019 del canal de yt "MakeAnything". Enlace al final.
